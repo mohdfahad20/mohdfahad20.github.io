@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mohd Fahad Chougle | Data Science & AI Engineer</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #0a0e1a;
+      color: #c9d1d9;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Animated gradient bg */
+    .bg-gradient {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      background: linear-gradient(135deg, #0a0e1a 0%, #101828 40%, #0d1220 70%, #0a0e1a 100%);
+    }
+
+    .bg-orb {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(120px);
+      opacity: .25;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .orb1 {
+      width: 500px;
+      height: 500px;
+      background: #58a6ff;
+      top: -150px;
+      left: -100px;
+    }
+
+    .orb2 {
+      width: 400px;
+      height: 400px;
+      background: #bc8cff;
+      bottom: -100px;
+      right: -80px;
+    }
+
+    .orb3 {
+      width: 300px;
+      height: 300px;
+      background: #3fb950;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 60px 28px 100px;
+    }
+
+    /* Header */
+    .header {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .header h1 {
+      font-size: 2.8rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      background: linear-gradient(135deg, #58a6ff, #bc8cff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 6px;
+    }
+
+    .header .role {
+      font-size: 1.05rem;
+      color: #8b949e;
+      font-weight: 400;
+      margin-bottom: 18px;
+    }
+
+    .header .role span {
+      color: #58a6ff;
+      font-weight: 500;
+    }
+
+    .links {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .links a {
+      color: #8b949e;
+      text-decoration: none;
+      font-size: .88rem;
+      padding: 6px 14px;
+      border: 1px solid #30363d;
+      border-radius: 20px;
+      transition: all .3s;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .links a:hover {
+      border-color: #58a6ff;
+      color: #58a6ff;
+      background: rgba(88, 166, 255, .07);
+    }
+
+    /* Section */
+    .section {
+      margin-bottom: 42px;
+    }
+
+    .section-title {
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: #58a6ff;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 18px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid #1e2a3a;
+    }
+
+    .section-title .icon {
+      font-size: 1.2rem;
+    }
+
+    /* Summary */
+    .summary-box {
+      background: rgba(88, 166, 255, .05);
+      border: 1px solid rgba(88, 166, 255, .15);
+      border-radius: 12px;
+      padding: 20px 24px;
+      font-size: .93rem;
+      color: #a8b2bd;
+    }
+
+    /* Skills */
+    .skills-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .skill-tag {
+      background: rgba(255, 255, 255, .04);
+      border: 1px solid #2a3548;
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-size: .82rem;
+      color: #c9d1d9;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      transition: all .3s;
+      cursor: default;
+    }
+
+    .skill-tag:hover {
+      border-color: #58a6ff;
+      background: rgba(88, 166, 255, .08);
+      transform: translateY(-2px);
+    }
+
+    .skill-tag .dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+    }
+
+    .dot-blue {
+      background: #58a6ff
+    }
+
+    .dot-purple {
+      background: #bc8cff
+    }
+
+    .dot-green {
+      background: #3fb950
+    }
+
+    .dot-orange {
+      background: #f0883e
+    }
+
+    .dot-pink {
+      background: #f778ba
+    }
+
+    .dot-cyan {
+      background: #39c5bb
+    }
+
+    /* Experience & Education cards */
+    .card {
+      background: rgba(255, 255, 255, .03);
+      border: 1px solid #1e2a3a;
+      border-radius: 12px;
+      padding: 22px 24px;
+      margin-bottom: 14px;
+      transition: border-color .3s, transform .3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: linear-gradient(180deg, #58a6ff, #bc8cff);
+    }
+
+    .card:hover {
+      border-color: #2a3548;
+      transform: translateY(-2px);
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 8px;
+    }
+
+    .card-header h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #e6edf3;
+    }
+
+    .card-header .date {
+      font-size: .78rem;
+      color: #8b949e;
+      background: #161b22;
+      padding: 3px 10px;
+      border-radius: 12px;
+    }
+
+    .card-role {
+      font-size: .82rem;
+      color: #58a6ff;
+      margin-bottom: 8px;
+      font-weight: 500;
+    }
+
+    .card-desc {
+      font-size: .85rem;
+      color: #8b949e;
+    }
+
+    .card-desc li {
+      margin-bottom: 4px;
+      list-style: none;
+      padding-left: 16px;
+      position: relative;
+    }
+
+    .card-desc li::before {
+      content: '›';
+      position: absolute;
+      left: 0;
+      color: #58a6ff;
+      font-weight: 700;
+    }
+
+    /* Projects */
+    .project-card {
+      background: rgba(255, 255, 255, .03);
+      border: 1px solid #1e2a3a;
+      border-radius: 12px;
+      padding: 20px 22px;
+      margin-bottom: 14px;
+      transition: all .3s;
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+    }
+
+    .project-card:hover {
+      border-color: #bc8cff;
+      transform: translateY(-2px);
+    }
+
+    .project-num {
+      font-size: 1.6rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #58a6ff, #bc8cff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      min-width: 30px;
+      line-height: 1.2;
+    }
+
+    .project-info h3 {
+      font-size: .95rem;
+      color: #e6edf3;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .project-info .proj-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin-top: 8px;
+    }
+
+    .proj-tag {
+      font-size: .72rem;
+      background: #161b22;
+      color: #8b949e;
+      padding: 3px 9px;
+      border-radius: 5px;
+      border: 1px solid #2a3548;
+    }
+
+    .project-info p {
+      font-size: .82rem;
+      color: #8b949e;
+    }
+
+    .project-links {
+      margin-top: 8px;
+      display: flex;
+      gap: 10px;
+    }
+
+    .project-links a {
+      font-size: .75rem;
+      color: #58a6ff;
+      text-decoration: none;
+      border: 1px solid #2a3548;
+      padding: 3px 10px;
+      border-radius: 5px;
+      transition: all .3s;
+    }
+
+    .project-links a:hover {
+      background: rgba(88, 166, 255, .1);
+      border-color: #58a6ff;
+    }
+
+    /* Certs */
+    .cert-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 16px;
+      background: rgba(255, 255, 255, .03);
+      border: 1px solid #1e2a3a;
+      border-radius: 10px;
+      margin-bottom: 8px;
+      transition: all .3s;
+    }
+
+    .cert-row:hover {
+      border-color: #3fb950;
+    }
+
+    .cert-icon {
+      font-size: 1.2rem;
+    }
+
+    .cert-row h4 {
+      font-size: .88rem;
+      color: #e6edf3;
+      font-weight: 500;
+    }
+
+    .cert-row p {
+      font-size: .78rem;
+      color: #8b949e;
+      margin: 0;
+    }
+
+    .cert-link {
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+
+    .cert-row {
+      cursor: pointer;
+    }
+
+    /* Download btn */
+    .download-btn {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      z-index: 100;
+      background: linear-gradient(135deg, #238636, #2ea043);
+      color: #fff;
+      padding: 13px 22px;
+      border-radius: 12px;
+      font-weight: 600;
+      text-decoration: none;
+      font-size: .88rem;
+      box-shadow: 0 8px 30px rgba(46, 160, 67, .35);
+      transition: all .3s;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border: none;
+      cursor: pointer;
+    }
+
+    .download-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 36px rgba(46, 160, 67, .45);
+    }
+
+    /* Scroll progress bar */
+    .progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      width: 0%;
+      background: linear-gradient(90deg, #58a6ff, #bc8cff);
+      z-index: 100;
+      transition: width .15s linear;
+    }
+
+    /* Fade-in animation */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity .6s ease, transform .6s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media(max-width:600px) {
+      .header h1 {
+        font-size: 2rem
+      }
+
+      .container {
+        padding: 40px 18px 100px
+      }
+
+      .project-card {
+        flex-direction: column;
+        gap: 8px
+      }
+    }
+
+    .location {
+      color: #8b949e;
+      font-size: .88rem;
+      padding: 6px 14px;
+      border: 1px solid #30363d;
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="bg-gradient"></div>
+  <div class="bg-orb orb1"></div>
+  <div class="bg-orb orb2"></div>
+  <div class="bg-orb orb3"></div>
+  <div class="progress-bar" id="progressBar"></div>
+
+  <div class="container">
+
+    <!-- Header -->
+    <div class="header fade-in">
+      <h1>Mohd Fahad Chougle</h1>
+      <p class="role">Programmer Analyst Trainee @ <span>Cognizant</span> &nbsp;·&nbsp; Data Science & AI Engineer</p>
+      <div class="links">
+        <a href="mailto:fahadchougle020304@gmail.com">✉ Email</a>
+        <a href="https://github.com/mohdfahad20" target="_blank">⌘ GitHub</a>
+        <a href="https://www.linkedin.com/in/mohd-fahad-chougle-750b80259" target="_blank">in LinkedIn</a>
+        <span class="location">📍 Mumbai, India</span>
+      </div>
+    </div>
+
+    <!-- Summary -->
+    <div class="section fade-in">
+      <div class="section-title"><span class="icon">💡</span> Summary</div>
+      <div class="summary-box">
+        Programmer Analyst Trainee at Cognizant specializing in Cloud and DevOps, with a strong foundation in Data
+        Science, Machine Learning, and NLP. Proficient in Python, AWS, Linux, and SQL with hands-on experience in
+        building AI-powered applications and leveraging data-driven insights to solve real-world problems.
+      </div>
+    </div>
+
+    <!-- Skills -->
+    <div class="section fade-in">
+      <div class="section-title"><span class="icon">⚡</span> Technical Skills</div>
+      <div class="skills-grid">
+
+        <!-- Core AI / ML -->
+        <span class="skill-tag"><span class="dot dot-blue"></span>Python</span>
+        <span class="skill-tag"><span class="dot dot-blue"></span>Machine Learning</span>
+        <span class="skill-tag"><span class="dot dot-blue"></span>Deep Learning</span>
+        <span class="skill-tag"><span class="dot dot-purple"></span>NLP</span>
+        <span class="skill-tag"><span class="dot dot-purple"></span>LLMs</span>
+        <span class="skill-tag"><span class="dot dot-purple"></span>Reinforcement Learning</span>
+        <span class="skill-tag"><span class="dot dot-purple"></span>Agentic AI</span>
+        <span class="skill-tag"><span class="dot dot-purple"></span>MCP (Model Context Protocol)</span>
+
+        <!-- RAG & Retrieval -->
+        <span class="skill-tag"><span class="dot dot-green"></span>RAG</span>
+        <span class="skill-tag"><span class="dot dot-green"></span>Vector Databases</span>
+
+        <!-- ML Frameworks -->
+        <span class="skill-tag"><span class="dot dot-orange"></span>PyTorch</span>
+        <span class="skill-tag"><span class="dot dot-orange"></span>TensorFlow</span>
+        <span class="skill-tag"><span class="dot dot-orange"></span>scikit-learn</span>
+
+        <!-- Backend & MLOps -->
+        <span class="skill-tag"><span class="dot dot-pink"></span>FastAPI</span>
+        <span class="skill-tag"><span class="dot dot-pink"></span>Flask</span>
+        <span class="skill-tag"><span class="dot dot-pink"></span>Streamlit</span>
+        <span class="skill-tag"><span class="dot dot-cyan"></span>Docker</span>
+        <span class="skill-tag"><span class="dot dot-cyan"></span>AWS</span>
+        <span class="skill-tag"><span class="dot dot-cyan"></span>Linux</span>
+
+        <!-- Data & Industry -->
+        <span class="skill-tag"><span class="dot dot-blue"></span>SQL</span>
+        <span class="skill-tag"><span class="dot dot-blue"></span>MySQL</span>
+        <span class="skill-tag"><span class="dot dot-blue"></span>MongoDB</span>
+
+      </div>
+    </div>
+
+
+    <!-- Experience -->
+    <div class="section fade-in">
+      <div class="section-title"><span class="icon">💼</span> Experience</div>
+
+      <div class="card">
+        <div class="card-header">
+          <h3>Cognizant</h3>
+          <span class="date">Nov 2025 – Present</span>
+        </div>
+        <div class="card-role">Programmer Analyst Trainee · Bangalore</div>
+        <ul class="card-desc">
+          <li>Undergoing training in DevOps and Cloud domain, learning Linux fundamentals, Python scripting, and AWS
+            cloud services.</li>
+          <li>Working on real-world AWS use cases with hands-on practical implementation of cloud solutions and
+            infrastructure.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <h3>Shaadi.com</h3>
+          <span class="date">Dec 2024 – Mar 2025</span>
+        </div>
+        <div class="card-role">Data Science Intern · Mumbai</div>
+        <ul class="card-desc">
+          <li>Performed EDA on user interactions to identify patterns for streamlining profile settings and enhancing
+            user experience.</li>
+          <li>Optimized recommendation strategies through A/B testing and Two-Tower Model architecture, improving
+            platform engagement.</li>
+          <li>Explored Reinforcement Learning with LLMs and deep learning methods for enhanced feature embeddings and
+            personalization.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <h3>JMR Infotech Private LTD</h3>
+          <span class="date">Jun 2024 – Jul 2024</span>
+        </div>
+        <div class="card-role">SQL Intern · Remote</div>
+        <ul class="card-desc">
+          <li>Developed and optimized SQL & PL/SQL queries for banking applications, improving database efficiency and
+            data retrieval performance.</li>
+          <li>Gained hands-on experience with PL/SQL Developer and database management tools, applying SQL knowledge to
+            real-world banking scenarios.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Projects -->
+    <div class="section fade-in">
+      <div class="section-title"><span class="icon">🚀</span> Projects</div>
+
+      <div class="project-card">
+        <div class="project-num">01</div>
+        <div class="project-info">
+          <h3>Medical Knowledge Assistant</h3>
+          <ul class="card-desc">
+            <li>Built a medical chatbot using RAG, FAISS, and Streamlit for accurate disease diagnosis and health
+              recommendations.</li>
+            <li>Implemented FAISS vector database for efficient semantic search across the medical knowledge base.</li>
+            <li>Deployed the application on Hugging Face Spaces with a Streamlit-based UI and Docker containerization.
+            </li>
+          </ul>
+          <div class="proj-tags">
+            <span class="proj-tag">Python</span><span class="proj-tag">RAG</span><span
+              class="proj-tag">FAISS</span><span class="proj-tag">Streamlit</span><span class="proj-tag">Docker</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/mohdfahad20/Medical-Chatbot-with-LLMs-Groq" target="_blank">⌘ GitHub</a>
+            <a href="https://huggingface.co/spaces/VeNoM21/Medical-Chatbot-Using-LLM" target="_blank">▶ Demo</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-num">02</div>
+        <div class="project-info">
+          <h3>Post-Discharge Medical AI Assistant</h3>
+          <ul class="card-desc">
+            <li>Built a multi-agent AI system using LangGraph with intelligent routing for personalized nephrology
+              patient support.</li>
+            <li>Implemented hybrid RAG combining FAISS vector search with Tavily web search for context-aware responses.
+            </li>
+            <li>Integrated Groq LLM for medical advice generation with citations.</li>
+            <li>Developed a full-stack system with FastAPI backend, Streamlit frontend, and session management.</li>
+          </ul>
+          <div class="proj-tags">
+            <span class="proj-tag">Python</span><span class="proj-tag">LangGraph</span><span
+              class="proj-tag">FastAPI</span><span class="proj-tag">Streamlit</span><span
+              class="proj-tag">RAG</span><span class="proj-tag">FAISS</span><span class="proj-tag">Groq</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/mohdfahad20/Post-Discharge-Medical-AI-Assistant" target="_blank">⌘ GitHub</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-num">03</div>
+        <div class="project-info">
+          <h3>KrushiBot: Chatbot for Farmers Awareness</h3>
+          <ul class="card-desc">
+            <li>Developed an NLP-powered chatbot delivering agricultural guidance and government scheme information.
+            </li>
+            <li>Implemented intent classification using PyTorch with high accuracy across agricultural domains.</li>
+            <li>Designed a user-friendly Flask interface for seamless farmer interaction.</li>
+          </ul>
+          <div class="proj-tags">
+            <span class="proj-tag">Python</span><span class="proj-tag">Flask</span><span
+              class="proj-tag">NLP</span><span class="proj-tag">PyTorch</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/mohdfahad20/Krushi_Bot" target="_blank">⌘ GitHub</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-num">04</div>
+        <div class="project-info">
+          <h3>Graphology – Personality Prediction using ML</h3>
+          <ul class="card-desc">
+            <li>Created a custom dataset of 100+ handwriting samples for personality trait prediction.</li>
+            <li>Trained a CNN-based deep learning model for handwriting analysis.</li>
+            <li>Achieved 70% accuracy through data augmentation, feature engineering, and model optimization.</li>
+          </ul>
+          <div class="proj-tags">
+            <span class="proj-tag">Python</span><span class="proj-tag">CNN</span><span class="proj-tag">Deep
+              Learning</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/mohdfahad20/Graphology-using-Machine-Learning" target="_blank">⌘ GitHub</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Education -->
+    <div class="section fade-in">
+      <div class="section-title"><span class="icon">🎓</span> Education</div>
+      <div class="card">
+        <div class="card-header">
+          <h3>M.H. Saboo Siddik College of Engineering</h3>
+          <span class="date">Dec 2021 – May 2025</span>
+        </div>
+        <div class="card-role">Bachelor of Engineering in Computer Engineering · University of Mumbai</div>
+        <ul class="card-desc">
+          <li>CGPA: 7.62 / 10</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Certifications -->
+    <div class="section fade-in">
+      <div class="section-title"><span class="icon">🏆</span> Certifications</div>
+
+      <a class="cert-link" href="https://www.credly.com/badges/98899cd6-8247-418e-9544-5d47d00b5e95/public_url"
+        target="_blank">
+        <div class="cert-row">
+          <span class="cert-icon">☁️</span>
+          <div>
+            <h4>AWS Academy Graduate – Cloud Foundations 🔗</h4>
+            <p>Amazon Web Services</p>
+          </div>
+        </div>
+      </a>
+
+      <a class="cert-link" href="https://www.credly.com/badges/2593bdda-7aab-4571-b0be-851e89653f0c/public_url"
+        target="_blank">
+        <div class="cert-row">
+          <span class="cert-icon">🤖</span>
+          <div>
+            <h4>AWS Academy Graduate – Machine Learning for NLP 🔗</h4>
+            <p>Amazon Web Services</p>
+          </div>
+        </div>
+      </a>
+
+      <a class="cert-link" href="https://learn.365datascience.com/certificates/DD-1CDBE55994/" target="_blank">
+        <div class="cert-row">
+          <span class="cert-icon">📊</span>
+          <div>
+            <h4>365 Data Science Career Track Certification 🔗</h4>
+            <p>365 Data Science</p>
+          </div>
+        </div>
+      </a>
+
+    </div>
+
+
+  </div>
+
+  <a class="download-btn" href="resume.pdf" target="_blank">⬇ Download Resume</a>
+
+  <script>
+    // Scroll progress bar
+    window.addEventListener('scroll', () => {
+      const scrolled = window.scrollY;
+      const total = document.documentElement.scrollHeight - window.innerHeight;
+      document.getElementById('progressBar').style.width = (scrolled / total * 100) + '%';
+    });
+
+    // Fade-in on scroll
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((e, i) => {
+        if (e.isIntersecting) {
+          setTimeout(() => e.target.classList.add('visible'), i * 100);
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  </script>
+</body>
+
+</html>
